@@ -26,5 +26,12 @@ namespace Bank_Tech_Test_C_Unit_Tests
             Assert.Equal(30, account.balance);
         }
 
+        [Fact]
+        public void DepositWithMinusErrors()
+        {
+            var err = Assert.Throws<InvalidOperationException>(() => account.Deposit(-10));
+            Assert.Equal("Cannot deposit less than 0.01", err.Message);
+        }
+
     }
 }

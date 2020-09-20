@@ -13,7 +13,14 @@ namespace Bank_Tech_Test_C
 
         public void Deposit(double value)
         {
-            balance += value;
+            if(value <= 0)
+            {
+                throw new InvalidOperationException("Cannot deposit less than 0.01");
+            } else
+            {
+                balance += value;
+            }
+
         }
     }
 }
