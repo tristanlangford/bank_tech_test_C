@@ -20,7 +20,18 @@ namespace Bank_Tech_Test_C
             {
                 balance += value;
             }
+        }
 
+        public void Withdraw(double value)
+        {
+            if (value <= 0)
+            {
+                throw new InvalidOperationException("Cannot withdraw less than 0.01");
+            }
+            else
+            {
+                balance -= value;
+            }
         }
     }
 }
