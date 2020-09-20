@@ -5,12 +5,13 @@ namespace Bank_Tech_Test_C
     {
         public double OldBalance;
         public double NewBalance;
-        public DateTime Date;
+        public string Date;
 
         public Interaction(double value, double oldBalance)
         {
             OldBalance = oldBalance;
             NewBalance = OldBalance + value;
+            Date = DateTime.Now.ToString("dd-MM-yyyy");
         }
     }
 }
