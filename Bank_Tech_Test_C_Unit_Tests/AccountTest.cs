@@ -11,8 +11,7 @@ namespace Bank_Tech_Test_C_Unit_Tests
 
         public AccountTest()
         {
-            var InteractionMock = new Mock<Interaction>(30, 20);
-            account = new Account(InteractionMock.Object);
+            account = new Account();
         }
 
         [Fact]
@@ -39,7 +38,7 @@ namespace Bank_Tech_Test_C_Unit_Tests
         public void DepositAddsToInteractionList()
         {
             account.Deposit(30);
-            Assert.IsType<Interaction>(account.InteractionsArray[0]);
+            Assert.IsType<Interaction>(account.history[0]);
         }
 
         [Fact]
@@ -60,7 +59,7 @@ namespace Bank_Tech_Test_C_Unit_Tests
         public void WithdrawAddsToInteractionList()
         {
             account.Withdraw(30);
-            Assert.IsType<Interaction>(account.InteractionsArray[0]);
+            Assert.IsType<Interaction>(account.history[0]);
         }
 
     }

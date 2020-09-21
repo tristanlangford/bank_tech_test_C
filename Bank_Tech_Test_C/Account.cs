@@ -8,14 +8,11 @@ namespace Bank_Tech_Test_C
         public double balance
         { get; private set; }
 
-        private Interaction interaction;
+        public List<Interaction> history = new List<Interaction>();
 
-        public List<Interaction> InteractionsArray = new List<Interaction>();
-
-        public Account(Interaction interactionClass)
+        public Account()
         {
             balance = 0;
-            interaction = interactionClass;
         }
 
         public void Deposit(double value)
@@ -26,7 +23,7 @@ namespace Bank_Tech_Test_C
             } else
             {
                 balance += value;
-                InteractionsArray.Add(new Interaction(value, balance));
+                history.Add(new Interaction(value, balance));
             }
         }
 
@@ -39,7 +36,7 @@ namespace Bank_Tech_Test_C
             else
             {
                 balance -= value;
-                InteractionsArray.Add(new Interaction(-value, balance));
+                history.Add(new Interaction(-value, balance));
             }
         }
     }
