@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Bank_Tech_Test_C
 {
     public class Account
@@ -6,9 +8,14 @@ namespace Bank_Tech_Test_C
         public double balance
         { get; private set; }
 
-        public Account()
+        private Interaction interaction;
+
+        public List<Interaction> InteractionsArray = new List<Interaction>();
+
+        public Account(Interaction interactionClass)
         {
             balance = 0;
+            interaction = interactionClass;
         }
 
         public void Deposit(double value)
@@ -19,6 +26,7 @@ namespace Bank_Tech_Test_C
             } else
             {
                 balance += value;
+                InteractionsArray.Add(new Interaction(value, balance));
             }
         }
 
@@ -31,6 +39,7 @@ namespace Bank_Tech_Test_C
             else
             {
                 balance -= value;
+                InteractionsArray.Add(new Interaction(-value, balance));
             }
         }
     }

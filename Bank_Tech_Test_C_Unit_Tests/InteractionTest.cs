@@ -27,7 +27,8 @@ namespace Bank_Tech_Test_C_Unit_Tests
         [Fact]
         public void StoresCreationDate()
         {
-            Assert.Equal("20-09-2020", interaction.Date);
+            Assert.Equal("21-09-2020", interaction.Date);
         }
+
     }
 }

@@ -1,3 +1,4 @@
+using Moq;
 using System;
 using Xunit;
 using Bank_Tech_Test_C;
@@ -10,7 +11,8 @@ namespace Bank_Tech_Test_C_Unit_Tests
 
         public AccountTest()
         {
-            account = new Account();
+            var InteractionMock = new Mock<Interaction>(30, 20);
+            account = new Account(InteractionMock.Object);
         }
 
         [Fact]
@@ -34,6 +36,13 @@ namespace Bank_Tech_Test_C_Unit_Tests
         }
 
         [Fact]
+        public void DepositAddsToInteractionList()
+        {
+            account.Deposit(30);
+            Assert.IsType<Interaction>(account.InteractionsArray[0]);
+        }
+
+        [Fact]
         public void WithdrawDecreasesBalance()
         {
             account.Withdraw(30);
@@ -45,6 +54,13 @@ namespace Bank_Tech_Test_C_Unit_Tests
         {
             var err = Assert.Throws<InvalidOperationException>(() => account.Withdraw(-30));
             Assert.Equal("Cannot withdraw less than 0.01", err.Message);
+        }
+
+        [Fact]
+        public void WithdrawAddsToInteractionList()
+        {
+            account.Withdraw(30);
+            Assert.IsType<Interaction>(account.InteractionsArray[0]);
         }
 
     }
