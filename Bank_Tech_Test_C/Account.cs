@@ -5,14 +5,14 @@ namespace Bank_Tech_Test_C
 {
     public class Account
     {
-        public double balance
+        public double Balance
         { get; private set; }
 
         public List<Interaction> history = new List<Interaction>();
 
         public Account()
         {
-            balance = 0;
+            Balance = 0;
         }
 
         public void Deposit(double value)
@@ -22,8 +22,8 @@ namespace Bank_Tech_Test_C
                 throw new InvalidOperationException("Cannot deposit less than 0.01");
             } else
             {
-                balance += value;
-                history.Add(new Interaction(value, balance));
+                Balance += value;
+                history.Add(new Interaction(value, Balance, () => DateTime.Now));
             }
         }
 
@@ -35,8 +35,8 @@ namespace Bank_Tech_Test_C
             }
             else
             {
-                balance -= value;
-                history.Add(new Interaction(-value, balance));
+                Balance -= value;
+                history.Add(new Interaction(-value, Balance,() => DateTime.Now));
             }
         }
     }

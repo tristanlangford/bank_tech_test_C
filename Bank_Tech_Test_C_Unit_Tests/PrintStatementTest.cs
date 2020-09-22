@@ -14,8 +14,8 @@ namespace Bank_Tech_Test_C_Unit_Tests
 
         public PrintStatementTest()
         {
-            MockInteraction1 = new Interaction(500, 0);
-            MockInteraction2 = new Interaction(-500, 1000);
+            MockInteraction1 = new Interaction(500, 0, () => new DateTime(2020, 09, 22));
+            MockInteraction2 = new Interaction(-500, 1000, () => new DateTime(2020, 09, 22));
             history = new List<Interaction> { MockInteraction1, MockInteraction2 };
         }
 
@@ -43,6 +43,7 @@ namespace Bank_Tech_Test_C_Unit_Tests
             Assert.Contains("22/09/2020 || || 500.00 || 500.00", PrintStatement.Print(history));
             Assert.Contains("22/09/2020 || 500.00 || || 500.00", PrintStatement.Print(history));
         }
+
     }
 
     

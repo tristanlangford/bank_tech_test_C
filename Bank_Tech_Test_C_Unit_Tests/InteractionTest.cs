@@ -10,7 +10,7 @@ namespace Bank_Tech_Test_C_Unit_Tests
 
         public InteractionTest()
         {
-            interaction = new Interaction(30, 10);
+            interaction = new Interaction(30, 10, () => new DateTime(2018, 03, 22));
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace Bank_Tech_Test_C_Unit_Tests
         [Fact]
         public void StoresCreationDate()
         {
-            Assert.Equal("22/09/2020", interaction.GetDate());
+            Assert.Equal("22/03/2018", interaction.GetDate());
         }
 
     }

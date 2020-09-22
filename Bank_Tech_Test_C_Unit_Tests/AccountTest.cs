@@ -17,14 +17,14 @@ namespace Bank_Tech_Test_C_Unit_Tests
         [Fact]
         public void BalanceStartsAt0()
         {
-            Assert.Equal(0, account.balance);
+            Assert.Equal(0, account.Balance);
         }
 
         [Fact]
         public void DepositIncreasesBalance()
         {
             account.Deposit(30);
-            Assert.Equal(30, account.balance);
+            Assert.Equal(30, account.Balance);
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace Bank_Tech_Test_C_Unit_Tests
         public void WithdrawDecreasesBalance()
         {
             account.Withdraw(30);
-            Assert.Equal(-30, account.balance);
+            Assert.Equal(-30, account.Balance);
         }
 
         [Fact]

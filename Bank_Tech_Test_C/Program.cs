@@ -6,7 +6,6 @@ namespace Bank_Tech_Test_C
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
