@@ -10,16 +10,21 @@ namespace Bank_Tech_Test_C
         {
         }
 
-        public static string Print(Interaction history)
+        public static string Print(List<Interaction> history)
         {
-            string title = "date || credit || debit || balance";
-            if(history.GetNewBalance() - history.GetOldBalance() > 0)
+            string statement = "date || credit || debit || balance";
+            foreach(Interaction i in history)
             {
-                return title + "\n" + PrintDeposit(history);
-            } else
-            {
-                return title + "\n" + PrintWithdrawal(history);
+                if (i.GetNewBalance() - i.GetOldBalance() > 0)
+                {
+                    statement += "\n" + PrintDeposit(i);
+                }
+                else
+                {
+                    statement += "\n" + PrintWithdrawal(i);
+                }
             }
+            return statement;
         }
 
         private static string PrintDeposit(Interaction interaction)

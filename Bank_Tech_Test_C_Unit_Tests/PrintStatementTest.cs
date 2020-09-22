@@ -10,29 +10,38 @@ namespace Bank_Tech_Test_C_Unit_Tests
     {
         public Interaction MockInteraction1;
         public Interaction MockInteraction2;
+        public List<Interaction> history;
 
         public PrintStatementTest()
         {
             MockInteraction1 = new Interaction(500, 0);
             MockInteraction2 = new Interaction(-500, 1000);
+            history = new List<Interaction> { MockInteraction1, MockInteraction2 };
         }
 
         [Fact]
         public void ContainsTitle()
         {
-            Assert.Contains("date || credit || debit || balance", PrintStatement.Print(MockInteraction1));
+            Assert.Contains("date || credit || debit || balance", PrintStatement.Print(history));
         }
 
         [Fact]
         public void PrintsSingleHistory()
         {
-            Assert.Contains("22/09/2020 || || 500.00 || 500.00", PrintStatement.Print(MockInteraction1));
+            Assert.Contains("22/09/2020 || || 500.00 || 500.00", PrintStatement.Print(history));
         }
 
         [Fact]
         public void CorrectFormatForWithdrawal()
         {
-            Assert.Contains("22/09/2020 || 500.00 || || 500.00", PrintStatement.Print(MockInteraction2));
+            Assert.Contains("22/09/2020 || 500.00 || || 500.00", PrintStatement.Print(history));
+        }
+
+        [Fact]
+        public void DealsWithList()
+        {
+            Assert.Contains("22/09/2020 || || 500.00 || 500.00", PrintStatement.Print(history));
+            Assert.Contains("22/09/2020 || 500.00 || || 500.00", PrintStatement.Print(history));
         }
     }
 
