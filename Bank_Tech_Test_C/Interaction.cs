@@ -13,17 +13,17 @@ namespace Bank_Tech_Test_C
         {
             OldBalance = oldBalance;
             NewBalance = OldBalance + value;
-            Date = DateTime.Now.ToString("dd-MM-yyyy");
+            Date = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         public double GetOldBalance()
         {
-            return OldBalance;
+            return Math.Round(OldBalance, 2);
         }
 
         public double GetNewBalance()
         {
-            return NewBalance;
+            return Math.Round(NewBalance, 2);
         }
 
         public string GetDate()

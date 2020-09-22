@@ -10,10 +10,10 @@ namespace Bank_Tech_Test_C
         {
         }
 
-        public static string Print()
+        public static string Print(Interaction history)
         {
             string title = "date || credit || debit || balance";
-            return title + "\n";
+            return title + "\n" + $"{history.GetDate()} || || {string.Format("{0:0.00}", (history.GetNewBalance() - history.GetOldBalance()))} || {string.Format("{0:0.00}", history.GetNewBalance())}";
         }
     }
 }

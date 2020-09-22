@@ -24,7 +24,7 @@ namespace Bank_Tech_Test_C_Unit_Tests
         [Fact]
         public void PrintsSingleHistory()
         {
-            Assert.Contains("14/01/2012 || || 500.00 || 500.00", PrintStatement.Print());
+            Assert.Contains("22/09/2020 || || 500.00 || 500.00", PrintStatement.Print(MockInteraction1));
         }
 
     }

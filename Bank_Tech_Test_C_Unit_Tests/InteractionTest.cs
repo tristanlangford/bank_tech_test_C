@@ -16,19 +16,19 @@ namespace Bank_Tech_Test_C_Unit_Tests
         [Fact]
         public void StoresOldBalance()
         {
-            Assert.Equal(10, interaction.GetOldBalance());
+            Assert.Equal(10.00, interaction.GetOldBalance());
         }
 
         [Fact]
         public void SetsNewBalance()
         {
-            Assert.Equal(40, interaction.GetNewBalance());
+            Assert.Equal(40.00, interaction.GetNewBalance());
         }
 
         [Fact]
         public void StoresCreationDate()
         {
-            Assert.Equal("21-09-2020", interaction.GetDate());
+            Assert.Equal("22/09/2020", interaction.GetDate());
         }
 
     }
