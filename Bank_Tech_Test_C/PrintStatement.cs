@@ -7,10 +7,10 @@ namespace Bank_Tech_Test_C
     {
         private const string Title = "date || credit || debit || balance";
 
-        public static string Print(List<Interaction> history)
+        public static string Print(List<IInteraction> history)
         {
             string statement = Title;
-            foreach(Interaction i in history)
+            foreach(IInteraction i in history)
             {
                 if (GetValue(i) > 0)
                 {
@@ -24,17 +24,17 @@ namespace Bank_Tech_Test_C
             return statement;
         }
 
-        private static double GetValue(Interaction interaction)
+        private static double GetValue(IInteraction interaction)
         {
             return interaction.GetNewBalance() - interaction.GetOldBalance();
         }
 
-        private static string PrintDeposit(Interaction interaction)
+        private static string PrintDeposit(IInteraction interaction)
         {
             return $"{interaction.GetDate()} || || {string.Format("{0:0.00}", (GetValue(interaction)))} || {string.Format("{0:0.00}", interaction.GetNewBalance())}";
         }
 
-        private static string PrintWithdrawal(Interaction interaction)
+        private static string PrintWithdrawal(IInteraction interaction)
         {
             return $"{interaction.GetDate()} || {string.Format("{0:0.00}", -GetValue(interaction))} || || {string.Format("{0:0.00}", interaction.GetNewBalance())}";
         }
