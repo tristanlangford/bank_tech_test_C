@@ -1,6 +1,7 @@
 using Moq;
 using System;
 using Xunit;
+using System.Collections.Generic;
 using Bank_Tech_Test_C;
 
 namespace Bank_Tech_Test_C_Unit_Tests
@@ -8,10 +9,16 @@ namespace Bank_Tech_Test_C_Unit_Tests
     public class AccountTest
     {
         public Account account;
+        public Mock<IPrintStatement> printStatement;
+        public List<IInteraction> historyMock;
 
         public AccountTest()
         {
-            account = new Account();
+            printStatement = new Mock<IPrintStatement>();
+            historyMock = new List<IInteraction>();
+            printStatement.Setup(p => p.Print(historyMock));
+
+            account = new Account(printStatement.Object);
         }
 
         [Fact]
@@ -60,6 +67,13 @@ namespace Bank_Tech_Test_C_Unit_Tests
         {
             account.Withdraw(30);
             Assert.IsType<Interaction>(account.history[0]);
+        }
+
+        [Fact]
+        public void CallsPrintStatement()
+        {
+            account.Statement();
+            printStatement.Verify(p => p.Print(historyMock), Times.Once());
         }
 
     }

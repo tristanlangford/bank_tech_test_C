@@ -4,9 +4,9 @@ namespace Bank_Tech_Test_C
 {
     public class Interaction : IInteraction
     {
-        private readonly double OldBalance;
+        private readonly double _OldBalance;
 
-        private readonly double NewBalance;
+        private readonly double _NewBalance;
 
         private readonly string Date;
 
@@ -14,20 +14,20 @@ namespace Bank_Tech_Test_C
 
         public Interaction(double value, double oldBalance, Func<DateTime> DateTimeProvider)
         {
-            OldBalance = oldBalance;
-            NewBalance = OldBalance + value;
+            _OldBalance = oldBalance;
+            _NewBalance = _OldBalance + value;
             _DateTimeProvider = DateTimeProvider;
             Date = _DateTimeProvider().ToString("dd/MM/yyyy");
         }
 
         public double GetOldBalance()
         {
-            return Math.Round(OldBalance, 2);
+            return Math.Round(_OldBalance, 2);
         }
 
         public double GetNewBalance()
         {
-            return Math.Round(NewBalance, 2);
+            return Math.Round(_NewBalance, 2);
         }
 
         public string GetDate()

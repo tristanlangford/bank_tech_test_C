@@ -8,40 +8,48 @@ namespace Bank_Tech_Test_C_Unit_Tests
 {
     public class PrintStatementTest
     {
-        public Interaction MockInteraction1;
-        public Interaction MockInteraction2;
-        public List<Interaction> history;
+        public List<IInteraction> history;
+        public IPrintStatement printStatement;
 
         public PrintStatementTest()
         {
-            MockInteraction1 = new Interaction(500, 0, () => new DateTime(2018, 04, 22));
-            MockInteraction2 = new Interaction(-500, 1000, () => new DateTime(2020, 09, 22));
-            history = new List<Interaction> { MockInteraction1, MockInteraction2 };
+            printStatement = new PrintStatement();
+
+            var MockInteraction1 = new Mock<IInteraction>();
+            MockInteraction1.Setup(p => p.GetDate()).Returns("22/04/2018");
+            MockInteraction1.Setup(p => p.GetNewBalance()).Returns(500);
+            MockInteraction1.Setup(p => p.GetOldBalance()).Returns(0);
+
+            var MockInteraction2 = new Mock<IInteraction>();
+            MockInteraction2.Setup(p => p.GetDate()).Returns("22/09/2020");
+            MockInteraction2.Setup(p => p.GetNewBalance()).Returns(50);
+            MockInteraction2.Setup(p => p.GetOldBalance()).Returns(500);
+            history = new List<IInteraction> { MockInteraction1.Object, MockInteraction2.Object };
         }
 
         [Fact]
         public void ContainsTitle()
         {
-            Assert.Contains("date || credit || debit || balance", PrintStatement.Print(history));
+            Assert.Contains("date || credit || debit || balance", printStatement.Print(history));
         }
 
         [Fact]
         public void PrintsSingleHistory()
         {
-            Assert.Contains("22/04/2018 || || 500.00 || 500.00", PrintStatement.Print(history));
+            Assert.Contains("22/04/2018 || || 500.00 || 500.00", printStatement.Print(history));
         }
 
         [Fact]
         public void CorrectFormatForWithdrawal()
         {
-            Assert.Contains("22/09/2020 || 500.00 || || 500.00", PrintStatement.Print(history));
+            Assert.Contains("22/09/2020 || 450.00 || || 50.00", printStatement.Print(history));
         }
 
         [Fact]
         public void DealsWithList()
         {
-            Assert.Contains("22/04/2018 || || 500.00 || 500.00", PrintStatement.Print(history));
-            Assert.Contains("22/09/2020 || 500.00 || || 500.00", PrintStatement.Print(history));
+            Assert.Contains("22/04/2018 || || 500.00 || 500.00", printStatement.Print(history));
+            Assert.Contains("22/09/2020 || 450.00 || || 50.00", printStatement.Print(history));
         }
 
     }

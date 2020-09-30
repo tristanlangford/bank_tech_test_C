@@ -30,8 +30,8 @@ namespace Bank_Tech_Test_C
                 throw new InvalidOperationException("Cannot deposit less than 0.01");
             } else
             {
-                Balance += value;
                 history.Add(new Interaction(value, Balance, () => DateTime.Now));
+                Balance += value;
             }
         }
 
@@ -43,8 +43,8 @@ namespace Bank_Tech_Test_C
             }
             else
             {
-                Balance -= value;
                 history.Add(new Interaction(-value, Balance,() => DateTime.Now));
+                Balance -= value;
             }
         }
 
