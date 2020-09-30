@@ -8,11 +8,19 @@ namespace Bank_Tech_Test_C
         public double Balance
         { get; private set; }
 
-        public List<Interaction> history = new List<Interaction>();
+        public List<IInteraction> history = new List<IInteraction>();
+        public IPrintStatement _printStatement;
 
-        public Account()
+        public Account(IPrintStatement printStatement = null)
         {
             Balance = 0;
+            if (printStatement == null)
+            {
+                _printStatement = new PrintStatement();
+            } else
+            {
+                _printStatement = printStatement;
+            }
         }
 
         public void Deposit(double value)
@@ -38,6 +46,11 @@ namespace Bank_Tech_Test_C
                 Balance -= value;
                 history.Add(new Interaction(-value, Balance,() => DateTime.Now));
             }
+        }
+
+        public string Statement()
+        {
+            return _printStatement.Print(history);
         }
     }
 }
